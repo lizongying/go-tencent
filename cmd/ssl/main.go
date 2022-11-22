@@ -328,7 +328,15 @@ func main() {
 				break
 			}
 		}
-		_ = client.DownloadCertificate(certificateId, *saveDir)
+		if err = client.DownloadCertificate(certificateId, *saveDir); err != nil {
+			log.Println("download certificate success")
+		} else {
+			log.Println("download certificate error")
+		}
 	}
-	_ = client.RestartNginx()
+	if err = client.RestartNginx(); err != nil {
+		log.Println("restart nginx success")
+	} else {
+		log.Println("restart nginx error")
+	}
 }
